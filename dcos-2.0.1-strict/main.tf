@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-2"
+  region = "eu-west-3"
   # make sure you have the credentials setup: https://www.terraform.io/docs/providers/aws/index.html#shared-credentials-file
 }
 
@@ -16,7 +16,7 @@ module "dcos-infrastructure" {
   admin_ips = [
     "${data.http.whatismyip.body}/32"]
 
-  ssh_public_key_file = "${file("~/.ssh/id_rsa.pub")}"
+  ssh_public_key_file = "~/.ssh/id_rsa.pub"
   #ssh_public_key = "${var.ssh_public_key}"
   #aws_key_name = "sschlott_default"
 
@@ -25,10 +25,10 @@ module "dcos-infrastructure" {
   num_bootstrap = "1"
   bootstrap_instance_type = "t3.large"
 
-  num_masters = "1"
+  num_masters = "3"
   masters_instance_type = "t3.2xlarge"
 
-  num_private_agents = "6"
+  num_private_agents = "3"
   private_agents_instance_type = "t3.2xlarge"
 
   num_public_agents = "2"
