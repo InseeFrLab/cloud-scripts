@@ -18,7 +18,7 @@ module "dcos-infrastructure" {
 
   ssh_public_key_file = "~/.ssh/id_rsa.pub"
   #ssh_public_key = "${var.ssh_public_key}"
-  #aws_key_name = "sschlott_default"
+  #aws_key_name = ""
 
   dcos_instance_os = "centos_7.6"
 
