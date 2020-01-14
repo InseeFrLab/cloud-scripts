@@ -1,0 +1,1 @@
+* go to folder and clone https://github.com/dcos/dcos-ansible

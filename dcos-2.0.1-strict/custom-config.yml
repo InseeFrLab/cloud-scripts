@@ -1,0 +1,34 @@
+dcos:
+  download: "https://downloads.mesosphere.com/dcos-enterprise/stable/2.0.1/dcos_generate_config.ee.sh"
+  version: "2.0.1"
+  enterprise_dcos: true
+
+
+  config:
+    cluster_name: "ssp-cloud-aws"
+    security: strict
+
+    superuser_username: ssp-root
+    # doc link to how create the superuser password hash - https://docs.d2iq.com/mesosphere/dcos/1.13/installing/production/deploying-dcos/installation/#set-up-a-super-user-password-enterprise
+    superuser_password_hash: "$6$rounds=656000$8CXbMqwuglDt3Yai$ZkLEj8zS.GmPGWt.dhwAv0.XsjYXwVHuS9aHh3DMcfGaz45OpGxC5oQPXUUpFLMkqlXCfhXMloIzE0Xh8VwHJ."
+    # Stefan's Test Cluster (https://mesosphere.lightning.force.com/lightning/r/License_History__c/a10f1000008PH0SAAW/view)
+    license_key_contents: "{{ lookup('file', 'path/to/license.txt')}}"
+
+    #{% if dcos_iaas_target != "onprem" %}
+    fault_domain_enabled: true
+    #{% else %}
+    #fault_domain_enabled: false
+    #{% endif %}
+    #{% endif %}
+
+    # dcos overlay network
+    dcos_overlay_network:
+      vtep_subnet: 44.128.0.0/20 # determines the maximum amounts of hosts/agents (one VTEP per agent?)
+      vtep_mac_oui: 70:B3:D5:00:00:00 # ??? --> I guess virtualized MAC interface prefix (like a MAC address namespace)+
+      overlays:
+        - name: dcos
+          subnet: 9.0.0.0/8
+          prefix: 26
+        - name: dcos-1
+          subnet: 192.168.0.0/16
+          prefix: 24
