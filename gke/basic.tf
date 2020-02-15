@@ -1,8 +1,3 @@
-provider "google" {
-  credentials = file("~/.gcp/account.json")
-  project     = "marine-compound-176220"
-  region      = "us-central1"
-}
 
 resource "google_container_cluster" "primary" {
   name     = "my-gke-cluster"
