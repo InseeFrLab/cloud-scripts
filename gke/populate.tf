@@ -1,12 +1,3 @@
-provider "kubernetes" {
-  load_config_file       = false
-  host                   = "https://${google_container_cluster.primary.endpoint}"
-  token                  = data.google_client_config.default.access_token
-  cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
-}
-
-data "google_client_config" "default" {
-}
 
 resource "kubernetes_pod" "nginx-example" {
   metadata {
@@ -23,6 +14,58 @@ resource "kubernetes_pod" "nginx-example" {
       image = "nginx:1.7.9"
       name  = "nginx-example"
     }
+  }
+
+  depends_on = [google_container_cluster.primary]
+}
+
+resource "kubernetes_ingress" "ingress" {
+  metadata {
+    name = "static-ingress" 
+    annotations = {
+       "kubernetes.io/ingress.global-static-ip-name": "kubernetes-cluster-ip-address"
+    }
+  }
+
+spec {
+    backend {
+      service_name = "nginx-example"
+      service_port = 80
+    }
+
+    rule {
+      http {
+        path {
+          backend {
+            service_name = "nginx-example"
+            service_port = 80
+          }
+
+          path = "/*"
+        }
+      }
+    }
+  }
+
+  depends_on = [google_container_cluster.primary]
+}
+
+resource "kubernetes_service" "nginx-example" {
+
+   metadata {
+    name = "nginx-example"
+  }
+  spec {
+    selector = {
+      app = "nginx-example"
+    }
+
+    port {
+      port        = 80
+      target_port = 80
+    }
+
+    type = "NodePort"
   }
 
   depends_on = [google_container_cluster.primary]

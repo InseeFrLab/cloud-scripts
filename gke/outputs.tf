@@ -1,4 +1,4 @@
-output "instance_ip_addr" {
+output "master_ip_addr" {
   value = google_container_cluster.primary.endpoint
 }
 
