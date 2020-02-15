@@ -18,7 +18,7 @@ Tested with provider `3.8`
 * Create a service account (https://console.cloud.google.com/iam-admin/serviceaccounts).  
 * Export account key in JSON format  
 * Put JSON key on `~/gcp/account.json`
-* Modify the `.tf` file to change the project name
+* Modify the `config.tf` file to change the project name
 
 ```
 terraform init
