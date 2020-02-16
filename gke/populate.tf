@@ -13,6 +13,9 @@ resource "kubernetes_deployment" "nginx-example" {
     replicas = 1
 
     template {
+      metadata {
+        
+      }
       spec {
         container {
           image = "nginx:1.7.9"
