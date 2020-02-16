@@ -7,10 +7,6 @@ resource "kubernetes_deployment" "nginx-example" {
       maintained_by = "terraform"
       app           = "nginx-example"
     }
-
-    annotations = {
-      "cert-manager.io/cluster-issuer" = "letsencrypt-staging"
-    }
   }
 
   spec {
@@ -45,6 +41,7 @@ resource "kubernetes_ingress" "ingress" {
     name = "static-ingress" 
     annotations = {
        "kubernetes.io/ingress.global-static-ip-name": "kubernetes-cluster-ip-address"
+       "cert-manager.io/cluster-issuer" = "letsencrypt-staging"
     }
   }
 
