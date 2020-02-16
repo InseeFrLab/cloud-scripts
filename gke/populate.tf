@@ -42,6 +42,7 @@ resource "kubernetes_ingress" "ingress" {
     annotations = {
        "kubernetes.io/ingress.global-static-ip-name": "kubernetes-cluster-ip-address"
        "cert-manager.io/cluster-issuer" = "letsencrypt-staging"
+       "acme.cert-manager.io/http01-edit-in-place" = "true"
     }
   }
 
