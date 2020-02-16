@@ -15,7 +15,7 @@ Tested with provider `3.8`
 
 https://www.terraform.io/docs/providers/kubernetes/index.html
 
-Tested with provider `1.11`
+Tested with provider `1.10`
 
 To install required modules :  
 ```
