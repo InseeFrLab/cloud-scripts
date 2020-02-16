@@ -12,10 +12,12 @@ resource "kubernetes_deployment" "nginx-example" {
   spec {
     replicas = 1
 
-    spec {
-      container {
-        image = "nginx:1.7.9"
-        name  = "nginx-example"
+    template {
+      spec {
+        container {
+          image = "nginx:1.7.9"
+          name  = "nginx-example"
+        }
       }
     }
   }
