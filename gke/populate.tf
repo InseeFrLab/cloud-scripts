@@ -1,5 +1,5 @@
 
-resource "kubernetes_pod" "nginx-example" {
+resource "kubernetes_deployment" "nginx-example" {
   metadata {
     name = "nginx-example"
 
@@ -10,9 +10,13 @@ resource "kubernetes_pod" "nginx-example" {
   }
 
   spec {
-    container {
-      image = "nginx:1.7.9"
-      name  = "nginx-example"
+    replicas = 1
+
+    spec {
+      container {
+        image = "nginx:1.7.9"
+        name  = "nginx-example"
+      }
     }
   }
 
