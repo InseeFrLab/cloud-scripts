@@ -41,7 +41,7 @@ resource "kubernetes_ingress" "ingress" {
     name = "static-ingress" 
     annotations = {
        "kubernetes.io/ingress.global-static-ip-name": "kubernetes-cluster-ip-address"
-       "cert-manager.io/cluster-issuer" = "letsencrypt-staging"
+       "cert-manager.io/cluster-issuer" = "letsencrypt-prod"
        "acme.cert-manager.io/http01-edit-in-place" = "true"
     }
   }
@@ -66,7 +66,7 @@ spec {
     }
 
     tls {
-      secret_name = "nginx-cert"
+      secret_name = "nginx-cert-prod"
       hosts = ["64cases.com"]
     }
   }
