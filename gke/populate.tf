@@ -7,6 +7,10 @@ resource "kubernetes_deployment" "nginx-example" {
       maintained_by = "terraform"
       app           = "nginx-example"
     }
+
+    annotations = {
+      "cert-manager.io/cluster-issuer" = "letsencrypt-staging"
+    }
   }
 
   spec {
@@ -65,7 +69,7 @@ spec {
 
     tls {
       secret_name = "nginx-cert"
-      hosts = "64cases.com"
+      hosts = ["64cases.com"]
     }
   }
 
