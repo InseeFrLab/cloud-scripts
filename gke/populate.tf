@@ -12,9 +12,17 @@ resource "kubernetes_deployment" "nginx-example" {
   spec {
     replicas = 1
 
+    selector {
+      match_labels = {
+        test = "MyExampleApp"
+      }
+    }
+
     template {
       metadata {
-        
+        labels = {
+          test = "MyExampleApp"
+        }
       }
       spec {
         container {
