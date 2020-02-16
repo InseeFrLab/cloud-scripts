@@ -14,14 +14,14 @@ resource "kubernetes_deployment" "nginx-example" {
 
     selector {
       match_labels = {
-        test = "MyExampleApp"
+        app = "nginx-example"
       }
     }
 
     template {
       metadata {
         labels = {
-          test = "MyExampleApp"
+          app = "nginx-example"
         }
       }
       spec {
