@@ -62,6 +62,11 @@ spec {
         }
       }
     }
+
+    tls {
+      secret_name = "nginx-cert"
+      hosts = "64cases.com"
+    }
   }
 
   depends_on = [google_container_cluster.primary]
