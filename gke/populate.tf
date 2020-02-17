@@ -38,11 +38,9 @@ resource "kubernetes_deployment" "nginx-example" {
 
 resource "kubernetes_ingress" "ingress" {
   metadata {
-    name = "static-ingress" 
+    name = "demo-ingress" 
     annotations = {
-       "kubernetes.io/ingress.global-static-ip-name": "kubernetes-cluster-ip-address"
-       "cert-manager.io/cluster-issuer" = "letsencrypt-prod"
-       "acme.cert-manager.io/http01-edit-in-place" = "true"
+       "kubernetes.io/ingress.class" = "nginx"
     }
   }
 
@@ -66,8 +64,8 @@ spec {
     }
 
     tls {
-      secret_name = "nginx-cert-prod"
-      hosts = ["64cases.com"]
+      secret_name = "wildcard-cert"
+      hosts = ["lab.sspcloud.fr"]
     }
   }
 

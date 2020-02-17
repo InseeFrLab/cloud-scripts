@@ -41,3 +41,7 @@ Takes ~6 minutes
 Output : 
 * `master ip` (which is the `apiserver` you are looking for)
 * `reserved_ip_address` (the ingress ip, should have a basic nginx deployed)
+
+### Post install
+
+To use kubectl : `gcloud container clusters get-credentials my-gke-cluster --region europe-west1-b`

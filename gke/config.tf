@@ -1,6 +1,6 @@
 provider "google" {
   credentials = file("~/.gcp/account.json")
-  project     = "marine-compound-176220"
+  project     = "projet-insee-poc"
   region      = "europe-west1"
 }
 

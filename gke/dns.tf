@@ -9,17 +9,25 @@ output "reserved_ip_address" {
 
 
 
-/*resource "google_dns_managed_zone" "my_company_zone" {
+resource "google_dns_managed_zone" "managed_zone" {
  count = "1"
- dns_name = "xxxxx.fr"
- name = "my-company-zone"
+ dns_name = "lab.sspcloud.fr."
+ name = "managed-zone"
  description = "WIP"
 }
 
-resource "google_dns_record_set" "my_awesome_service" {
- managed_zone = "my-company-zone"
- name = "xxxxx.fr"
+resource "google_dns_record_set" "index" {
+ managed_zone = "managed-zone"
+ name = "lab.sspcloud.fr."
  type = "A"
  ttl = 300
  rrdatas = ["${google_compute_global_address.kubernetes_cluster.address}"]
-}*/
+}
+
+resource "google_dns_record_set" "wildcard_index" {
+ managed_zone = "managed-zone"
+ name = "*.lab.sspcloud.fr."
+ type = "A"
+ ttl = 300
+ rrdatas = ["${google_compute_global_address.kubernetes_cluster.address}"]
+}
