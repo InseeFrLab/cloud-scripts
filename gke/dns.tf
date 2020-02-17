@@ -1,10 +1,11 @@
 
-resource "google_compute_global_address" "kubernetes_cluster" {
+resource "google_compute_address" "kubernetes_cluster" {
  name = "kubernetes-cluster-ip-address"
+ region = "europe-west1"
 }
 
 output "reserved_ip_address" {
-  value = google_compute_global_address.kubernetes_cluster.address
+  value = google_compute_address.kubernetes_cluster.address
 }
 
 
@@ -21,7 +22,7 @@ resource "google_dns_record_set" "index" {
  name = "lab.sspcloud.fr."
  type = "A"
  ttl = 300
- rrdatas = ["${google_compute_global_address.kubernetes_cluster.address}"]
+ rrdatas = ["${google_compute_address.kubernetes_cluster.address}"]
 }
 
 resource "google_dns_record_set" "wildcard_index" {
@@ -29,5 +30,5 @@ resource "google_dns_record_set" "wildcard_index" {
  name = "*.lab.sspcloud.fr."
  type = "A"
  ttl = 300
- rrdatas = ["${google_compute_global_address.kubernetes_cluster.address}"]
+ rrdatas = ["${google_compute_address.kubernetes_cluster.address}"]
 }
