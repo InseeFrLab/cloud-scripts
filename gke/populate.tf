@@ -64,7 +64,7 @@ spec {
     }
 
     tls {
-      secret_name = "wildcard-cert"
+      secret_name = "lab-wildcard"
       hosts = ["lab.sspcloud.fr"]
     }
   }
