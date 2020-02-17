@@ -45,12 +45,8 @@ resource "kubernetes_ingress" "ingress" {
   }
 
 spec {
-    backend {
-      service_name = "nginx-example"
-      service_port = 80
-    }
-
     rule {
+      host = "demo.lab.sspcloud.fr"
       http {
         path {
           backend {
@@ -58,14 +54,13 @@ spec {
             service_port = 80
           }
 
-          path = "/*"
+          path = "/"
         }
       }
     }
 
     tls {
-      secret_name = "lab-wildcard"
-      hosts = ["lab.sspcloud.fr"]
+      hosts = ["demo.lab.sspcloud.fr"]
     }
   }
 
