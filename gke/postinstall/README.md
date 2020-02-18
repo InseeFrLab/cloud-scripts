@@ -4,13 +4,13 @@
 
 https://cloud.google.com/community/tutorials/nginx-ingress-gke
 
-### Create a wildcard cert 
+### Create a wildcard cert
 
 ```
 certbot certonly --manual
 ```
 
-### Import it as a kubernetes secret 
+### Import it as a kubernetes secret
 
 ```
 kubectl create secret tls lab-wildcard --key privkey.pem --cert cert.pem
@@ -18,25 +18,17 @@ kubectl create secret tls lab-wildcard --key privkey.pem --cert cert.pem
 
 TODO : this secret should probably be in a more secured namespace
 
+### (client-side) Install helm
 
-### Install helm tiller
+Download helm (tested with 3.1.0) : https://github.com/helm/helm/releases
 
 ```
-kubectl --namespace kube-system create sa tiller
-
-# create a cluster role binding for tiller
-kubectl create clusterrolebinding tiller \
-    --clusterrole cluster-admin \
-    --serviceaccount=kube-system:tiller
-
-# initialized helm within the tiller service account
-helm init --service-account tiller
+helm repo add stable https://kubernetes-charts.storage.googleapis.com
+helm repo update
 ```
 
 ### Install nginx ingress controller
 
 ```
-helm install --name nginx-ingress stable/nginx-ingress --set rbac.create=true --set controller.publishService.enabled=true --set controller.service.loadBalancerIP=<reserved-ip-address> --set controller.extraArgs.default-ssl-certificate="default/lab-wildcard"
+helm install nginx-ingress stable/nginx-ingress --set rbac.create=true --set controller.publishService.enabled=true --set controller.service.loadBalancerIP=<reserved-ip-address> --set controller.extraArgs.default-ssl-certificate="default/lab-wildcard"
 ```
-
-
