@@ -32,3 +32,7 @@ helm repo update
 ```
 helm install nginx-ingress stable/nginx-ingress --set rbac.create=true --set controller.publishService.enabled=true --set controller.service.loadBalancerIP=<reserved-ip-address> --set controller.extraArgs.default-ssl-certificate="default/lab-wildcard"
 ```
+
+### Install OIDC proxy  
+
+See [oidc](oidc/README.md)
