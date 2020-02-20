@@ -15,5 +15,5 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: oidc-kube-oidc-proxy
+              serviceName: oidc-kube-proxy-kube-oidc-proxy
               servicePort: 443
