@@ -26,6 +26,10 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
   location   = "europe-west1-b"
   cluster    = google_container_cluster.primary.name
   node_count = 3
+  management {
+     auto_repair = true
+     auto_upgrade = true
+  }
 
   node_config {
     preemptible  = true
