@@ -4,8 +4,6 @@ metadata:
   name: registry
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx/client_max_body_size: 100m
-    ingress.kubernetes.io/proxy-body-size: 50m
     nginx.ingress.kubernetes.io/proxy-body-size: 50m
 
 spec:
