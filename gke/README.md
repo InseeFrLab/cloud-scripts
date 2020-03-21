@@ -38,6 +38,9 @@ terraform apply
 
 Takes ~6 minutes  
 
+Input :
+* `domain_name` : the base domain name to use (for dns configuration & ingress). Defaults to `demo.dev.sspcloud.fr` (you should probably change it).
+
 Output : 
 * `master ip` (which is the `apiserver` you are looking for)
 * `reserved_ip_address` (the ingress ip, should have a basic nginx deployed)

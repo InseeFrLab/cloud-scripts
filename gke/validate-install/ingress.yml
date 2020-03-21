@@ -7,9 +7,9 @@ metadata:
 spec:
   tls:
     - hosts:
-        - mario.lab.sspcloud.fr
+        - mario.demo.dev.sspcloud.fr
   rules:
-    - host: mario.lab.sspcloud.fr
+    - host: mario.demo.dev.sspcloud.fr
       http:
         paths:
           - path: /

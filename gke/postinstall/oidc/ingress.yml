@@ -8,9 +8,9 @@ metadata:
 spec:
   tls:
     - hosts:
-        - apiserver.lab.sspcloud.fr
+        - apiserver.demo.dev.sspcloud.fr
   rules:
-    - host: apiserver.lab.sspcloud.fr
+    - host: apiserver.demo.dev.sspcloud.fr
       http:
         paths:
           - path: /

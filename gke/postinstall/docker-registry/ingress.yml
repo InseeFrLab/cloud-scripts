@@ -9,9 +9,9 @@ metadata:
 spec:
   tls:
     - hosts:
-        - docker-registry.lab.sspcloud.fr
+        - docker-registry.demo.dev.sspcloud.fr
   rules:
-    - host: docker-registry.lab.sspcloud.fr
+    - host: docker-registry.demo.dev.sspcloud.fr
       http:
         paths:
           - path: /

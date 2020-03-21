@@ -46,7 +46,7 @@ resource "kubernetes_ingress" "ingress" {
 
 spec {
     rule {
-      host = "demo.lab.sspcloud.fr"
+      host = "nginx.${var.domain_name}"
       http {
         path {
           backend {
@@ -60,7 +60,7 @@ spec {
     }
 
     tls {
-      hosts = ["demo.lab.sspcloud.fr"]
+      hosts = ["nginx.${var.domain_name}"]
     }
   }
 
