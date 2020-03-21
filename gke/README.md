@@ -33,13 +33,13 @@ terraform init -upgrade
 ### Run  
 
 ```
-terraform apply
+terraform apply -var domain_name=example.com
 ```
 
 Takes ~6 minutes  
 
 Input :
-* `domain_name` : the base domain name to use (for dns configuration & ingress). Defaults to `demo.dev.sspcloud.fr` (you should probably change it).
+* `domain_name` : the base domain name to use (for dns configuration & ingress). Defaults to `demo.dev.sspcloud.fr` (you probably want to change it).
 
 Output : 
 * `master ip` (which is the `apiserver` you are looking for)
