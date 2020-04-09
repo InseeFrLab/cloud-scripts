@@ -26,7 +26,7 @@ oidc:
 So we can go ahead and install it :  
 
 ```
-helm install --set oidc.clientId=xxx --set oidc.issuerUrl=https://xxx --set oidc.usernameClaim=xxx oidc-kube-proxy .
+helm install -f conf.yaml oidc-kube-proxy .
 ```
 
 If you want to fallback to the GKE / EKS default auth you can enable [token passthrough feature](https://github.com/jetstack/kube-oidc-proxy/blob/master/docs/tasks/token-passthrough.md) :  
@@ -34,11 +34,3 @@ If you want to fallback to the GKE / EKS default auth you can enable [token pass
 --set tokenPassthrough.enabled=true
 ```
 
-## Reverse-proxy it  
-
-The default helm configuration does not automatically ingress the proxy (although it seems possible to configure it to do so).
-We provide a simple `ingress.yml` that will expose the proxy : 
-
-```
-kubectl apply -f .
-```
