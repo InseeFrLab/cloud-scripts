@@ -68,6 +68,8 @@ The inventory is the list of targets that will be used by ansible to install the
 So that should contain our masters and our workers.  
 The inventory is a plain `YAML` file (`.ini` files are also supported).  
 
+You can start by copying the inventory/sample folder which will provide you with a sample configuration.
+
 Example (using calico as cluster's network):  
 ```YAML
 all:
@@ -122,7 +124,14 @@ ansible all -i hosts.yml -m ping
 
 ## Cluster's configuration  
 
-WIP
+Configuration is done inside the `group_vars` folder.  
+Especially, the `inventory/my-cluster/group_vars/k8s-cluster/k8s-cluster.yml` which is the main configuration file.  
+
+Main configuration we changed were :  
+* `kube_version: v1.19.2` (see https://github.com/kubernetes/kubernetes/releases)  
+* `kube_oidc_auth: true` (and `kube_oidc_X` variables)  
+
+We used the default network : `calico`
 
 ## Let's gooooooo  
 
