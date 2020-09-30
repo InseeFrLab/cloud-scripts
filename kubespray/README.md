@@ -130,8 +130,9 @@ Especially, the `inventory/my-cluster/group_vars/k8s-cluster/k8s-cluster.yml` wh
 Main configuration we changed were :  
 * `kube_version: v1.19.2` (see https://github.com/kubernetes/kubernetes/releases)  
 * `kube_oidc_auth: true` (and `kube_oidc_X` variables)  
+* `kubectl_localhost: true` / `kubeconfig_localhost: true` : this will install and configure `kubectl` on the bootstrap node (see https://github.com/kubernetes-sigs/kubespray/blob/master/docs/getting-started.md#accessing-kubernetes-api)
 
-We used the default network : `calico`
+We used the default network : `calico`  
 
 ## Let's gooooooo  
 
@@ -141,6 +142,14 @@ The playbook to run is `cluster.yml`.
 `ansible-playbook -i inventory/my-cluster/hosts.yml --become --become-user=root cluster.yml`
 
 Note : `--become` and `--become-user` are needed as the account we used on worker / master nodes was not `root`. You may not need it.  
+
+## Accessing the cluster  
+
+See https://github.com/kubernetes-sigs/kubespray/blob/master/docs/getting-started.md#accessing-kubernetes-api  
+
+(if `kubeconfig_localhost: true`) :  
+`kubeconfig` is available on `inventory/my-cluster/artifacts/`.  
+We can copy it to `~/.kube/config` and enjoy `kubectl get nodes` \o/
 
 ## Hot-changing the configuration  
 
