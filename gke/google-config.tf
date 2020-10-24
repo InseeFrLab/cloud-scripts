@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = file("~/.gcp/account2.json")
+  credentials = file("~/.gcp/account.json")
   project     = var.projectid
   region      = var.region
 }

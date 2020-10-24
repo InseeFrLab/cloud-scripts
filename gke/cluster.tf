@@ -33,8 +33,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
   }
 
   node_config {
-    preemptible = true
-    #machine_type = "n1-standard-1"
+    preemptible  = true
     machine_type = "e2-small"
 
     metadata = {

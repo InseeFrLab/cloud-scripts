@@ -20,7 +20,7 @@ TODO : this secret should probably be in a more secured namespace
 
 ### (client-side) Install helm
 
-Download helm (tested with 3.1.0) : https://github.com/helm/helm/releases
+Download helm (tested with 3.3.0) : https://github.com/helm/helm/releases
 
 ```
 helm repo add stable https://kubernetes-charts.storage.googleapis.com

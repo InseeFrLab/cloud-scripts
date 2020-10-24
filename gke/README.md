@@ -29,21 +29,24 @@ terraform init -upgrade
 
 ### Run  
 
+Modify `terraform.tfvars.json` according to your needs.  
+See `variables.tf` for the list and description of variables.  
+
 ```
-terraform apply -var domain_name=example.com
+terraform apply
 ```  
 
 Takes ~6 minutes  
 
-Input :  
-* `projectid` : the project to work in
-* `domain_name` : the base domain name to use (for dns configuration & ingress). Defaults to `example.com` (you probably want to change it).  
-
-Note : you can also change the variables directly in `variables.tf`.
-
 Output : 
 * `master ip` (which is the `apiserver` you are probably looking for)
-* `reserved_ip_address` (the reverse proxy ip)
+* `reserved_ip_address` (the ip that will be used for the reverse proxy)
+
+### Important note  
+
+Make sure to store the `terraform.tfstate` (or `terraform.tfstate.backup`) file (and keep it up to date).  
+If you ever lose access to it, you won't be able to easily make changes to your infrastructure.  
+See https://medium.com/@abtreece/recovering-terraform-state-69c9966db71e for more details.
 
 ### Post install
 
