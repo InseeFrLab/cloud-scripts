@@ -45,6 +45,7 @@ Output :
 ### Important note  
 
 Make sure to store the `terraform.tfstate` (or `terraform.tfstate.backup`) file (and keep it up to date).  
+Warning : this file contains secrets, you should treat it as a private file.  
 If you ever lose access to it, you won't be able to easily make changes to your infrastructure.  
 See https://medium.com/@abtreece/recovering-terraform-state-69c9966db71e for more details.
 
