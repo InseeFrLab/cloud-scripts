@@ -39,8 +39,9 @@ terraform apply
 Takes ~6 minutes  
 
 Output : 
-* `master ip` (which is the `apiserver` you are probably looking for)
-* `reserved_ip_address` (the ip that will be used for the reverse proxy)
+* `master ip` : the `apiserver` IP 
+* `reserved_ip_address` : the ip that will be used for the reverse proxy
+* `zone` : DNS zones that you need to set on your DNS provider
 
 ### Important note  
 

@@ -15,5 +15,5 @@ variable "region" {
 
 variable "location" {
   type        = string
-  description = "The locationn to deploy everything in. Should be within the region"
+  description = "The location to deploy everything in. Should be within the region"
 }

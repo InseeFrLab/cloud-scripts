@@ -3,7 +3,7 @@ output "master_ip_addr" {
 }
 
 output "zone" {
-  value = google_dns_managed_zone.managed_zone.*
+  value = google_dns_managed_zone.managed_zone.name_servers
 }
 
 

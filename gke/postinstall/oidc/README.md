@@ -7,12 +7,14 @@ https://github.com/jetstack/kube-oidc-proxy
 
 ## Install using helm
 
-The chart is not (yet ? https://github.com/jetstack/kube-oidc-proxy/issues/123) available on repositories but can be downloaded from github.  
+The chart is not (yet ? https://github.com/jetstack/kube-oidc-proxy/issues/123) officially available on public repositories but can be downloaded from github.  
 
 ```
 git clone https://github.com/jetstack/kube-oidc-proxy
 cd kube-oidc-proxy/deploy/charts/kube-oidc-proxy
-```
+```  
+
+InseeFRLab also provides a public mirror for the chart (warning : the mirror may be out of date, feel free to submit an issue / PR). See https://github.com/inseefrlab/helm-charts
 
 The minimum configuration is :  
 

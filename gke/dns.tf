@@ -9,7 +9,6 @@ output "reserved_ip_address" {
 }
 
 resource "google_dns_managed_zone" "managed_zone" {
-  count       = "1"
   dns_name    = "${var.domain_name}."
   name        = "managed-zone"
   description = "WIP"
