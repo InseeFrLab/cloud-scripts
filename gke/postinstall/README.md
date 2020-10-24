@@ -1,14 +1,28 @@
 # Post-install
 
+## Install Kubectl (client-side)  
+
+### Download kubectl binary  
+  
+https://kubernetes.io/docs/tasks/tools/install-kubectl/  
+
+### Get Kubectl credentials  
+
+The easiest way to get the Kubernetes credentials tied to your google cloud account is : `gcloud container clusters get-credentials my-gke-cluster --region europe-west1-b`  
+
+### Test  
+
+```
+kubectl get nodes
+```  
+
 ## Install helm (client-side)
 
-Download helm : https://github.com/helm/helm/releases
+https://helm.sh/docs/intro/install/
 
-## Install nginx-controller
+## Install nginx-controller  (https://cloud.google.com/community/tutorials/nginx-ingress-gke)
 
-https://cloud.google.com/community/tutorials/nginx-ingress-gke
-
-### Optional : setup TLS (HTTPS)
+### Setup TLS (HTTPS) (optional)
 
 Generate a wildcard certificate (Certbot documentation : https://certbot.eff.org/) :  
 
@@ -22,7 +36,7 @@ Import it as a Kubernetes secret :
 kubectl create secret tls wildcard --key privkey.pem --cert cert.pem
 ```
 
-### Install nginx ingress controller using Helm
+### Install using Helm
 
 ```
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx

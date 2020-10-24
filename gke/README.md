@@ -52,4 +52,4 @@ See https://medium.com/@abtreece/recovering-terraform-state-69c9966db71e for mor
 
 ### Post install
 
-To use kubectl : `gcloud container clusters get-credentials my-gke-cluster --region europe-west1-b`
+See [postinstall](postinstall/README.md) for suggestions on how to enjoy your brand new cluster :)
