@@ -1,6 +1,6 @@
 
 resource "google_container_cluster" "primary" {
-  name     = "my-gke-cluster"
+  name     = "el-clusterino"
   location = var.location
 
   # We can't create a cluster with no node pool defined, but we want to only use
@@ -9,7 +9,9 @@ resource "google_container_cluster" "primary" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  min_master_version = "latest"
+  release_channel {
+    channel = "REGULAR"
+  }
 
   # If this block is provided and both username and password are empty, basic authentication will be disabled
   master_auth {
@@ -23,7 +25,7 @@ resource "google_container_cluster" "primary" {
 }
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
-  name       = "my-node-pool"
+  name       = "first-node-pool"
   location   = var.location
   cluster    = google_container_cluster.primary.name
   node_count = 3

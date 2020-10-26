@@ -1,6 +1,6 @@
 
 resource "google_compute_address" "kubernetes_cluster" {
-  name   = "kubernetes-cluster-ip-address"
+  name   = "kub-cluster-ip-address"
   region = var.region
 }
 
@@ -10,12 +10,12 @@ output "reserved_ip_address" {
 
 resource "google_dns_managed_zone" "managed_zone" {
   dns_name    = "${var.domain_name}."
-  name        = "managed-zone"
+  name        = "dns-zone"
   description = "WIP"
 }
 
 resource "google_dns_record_set" "index" {
-  managed_zone = "managed-zone"
+  managed_zone = "dns-zone"
   name         = "${var.domain_name}."
   type         = "A"
   ttl          = 300
@@ -24,7 +24,7 @@ resource "google_dns_record_set" "index" {
 }
 
 resource "google_dns_record_set" "wildcard_index" {
-  managed_zone = "managed-zone"
+  managed_zone = "dns-zone"
   name         = "*.${var.domain_name}."
   type         = "A"
   ttl          = 300
