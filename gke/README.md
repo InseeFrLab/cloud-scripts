@@ -32,7 +32,6 @@ terraform init -upgrade
 * Create account key
 * Export account key in JSON format  
 * Put JSON key on `~/.gcp/account.json`
-* Modify the `google-config.tf` file to change the project name
 
 ### Run  
 
