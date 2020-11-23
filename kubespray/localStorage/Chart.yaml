@@ -1,0 +1,8 @@
+apiVersion: v2
+name: provisioner
+version: 1.0.0
+dependencies:
+  - name: provisioner
+    version: 3.0.0
+    repository: https://inseefrlab.github.io/helm-charts/
+    enabled: true
