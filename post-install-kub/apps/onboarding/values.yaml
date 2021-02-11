@@ -1,0 +1,26 @@
+k8s-onboarding:
+  replicaCount: 3
+  image:
+    tag: latest
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    hosts:
+      - host: example.com
+        paths:
+          - /
+    tls:
+      - hosts:
+          - example.com
+
+  env:
+    io.insee.dev.k8sonboarding.clusterName: "example-cluster"
+    io.insee.dev.k8sonboarding.apiserver-url: "https://apiserver.example.com"
+    io.insee.dev.k8sonboarding.namespace-prefix: "dev-"
+    io.insee.dev.k8sonboarding.user-prefix: ""
+    io.insee.dev.k8sonboarding.name-namespace-admin: namespace_admin
+    io.insee.dev.k8sonboarding.jwt.username-claim: preferred_username
+    spring.security.oauth2.resourceserver.jwt.issuer-uri: "https://example.com/auth/realms/example"
+    io.insee.dev.k8sonboarding.ui.clientId: "onboarding"
+    io.insee.dev.k8sonboarding.ui.authority: "https://example.com/auth/realms/example"

@@ -1,0 +1,8 @@
+apiVersion: v2
+name: k8s-onboarding
+version: 1.0.0
+dependencies:
+  - name: k8s-onboarding
+    version: 0.1.0
+    repository: https://inseefrlab.github.io/helm-charts
+    enabled: true

@@ -1,0 +1,21 @@
+ingress-nginx:
+  controller:
+    nodeSelector:
+      public: "true"
+    extraArgs:
+      default-ssl-certificate: ingress-nginx/kub-wildcard
+    hostNetwork: true
+    kind: DaemonSet
+    publishService:
+      enabled: true
+    readyStatus:
+      port: 9999
+    service:
+      enabled: true
+      type: ClusterIP
+  rbac:
+    create: true
+  podSecurityPolicy:
+    enabled: true
+  defaultBackend:
+    enabled: true

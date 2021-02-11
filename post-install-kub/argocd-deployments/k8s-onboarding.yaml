@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: onboarding
+spec:
+  project: default
+  source:
+    repoURL: https://yourrepo.example.com/gitops.git
+    targetRevision: HEAD
+    path: apps/onboarding
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: onboarding
+  syncPolicy:
+    automated:
+      prune: true

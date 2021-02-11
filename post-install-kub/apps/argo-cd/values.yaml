@@ -1,0 +1,45 @@
+argo-cd:
+  global:
+    image:
+      tag: v1.8.4
+      imagePullPolicy: IfNotPresent
+  server:
+    config:
+      application.instanceLabelKey: argocd.argoproj.io/instance
+      oidc.config: |
+        name: keycloak
+        issuer: https://example.com/auth/realms/example
+        clientID: argocd
+        clientSecret: xxx-xxx-xxx-xxx
+        requestedIDTokenClaims:
+          groups:
+            essential: true
+        requestedScopes:
+          - openid
+          - profile
+          - email
+      url: https://argocd.example.com
+    # extraArgs:
+    #   - --insecure
+    ingress:
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      enabled: true
+      hosts:
+        - argocd.example.com
+      paths:
+        - /
+      tls:
+        - hosts:
+            - argocd.example.com
+    rbacConfig:
+      policy.default: ""
+      policy.csv: |
+        g, argocd-admin, role:admin
+  configs:
+    secret:
+      # Argo expects the password in the secret to be bcrypt hashed. You can create this hash with
+      # `htpasswd -nbBC 10 "" $ARGO_PWD | tr -d ':\n' | sed 's/$2y/$2a/'`
+      argocdServerAdminPassword: "$2a$10$zx8mP59GE/rF8ZKnAH38PeRLo22rwwnM1bwVPLpJkRYQ08efvGLWq"
+      argocdServerAdminPasswordMtime: "2006-01-02T15:04:05Z"
