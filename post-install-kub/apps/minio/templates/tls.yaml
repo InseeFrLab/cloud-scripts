@@ -1,0 +1,11 @@
+# See https://medium.com/nuvo-group-tech/move-your-certs-to-helm-4f5f61338aca
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/tls
+metadata:
+  name: minio-tls
+  annotations:
+    "helm.sh/hook": "pre-install"
+    "helm.sh/hook-delete-policy": "before-hook-creation"
+data:
+{{ ( include "custom-metrics.gen-certs" . ) | indent 2 }}
