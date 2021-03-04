@@ -1,0 +1,56 @@
+grafana:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    hosts:
+      - grafana.example.com
+    path: /
+    tls:
+      - hosts:
+          - grafana.example.com
+
+  deploymentStrategy:
+    type: Recreate
+  ## Enable persistence using Persistent Volume Claims
+  ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+  ##
+  persistence:
+    type: pvc
+    enabled: true
+    accessModes:
+      - ReadWriteOnce
+    size: 1Gi
+    finalizers:
+      - kubernetes.io/pvc-protection
+
+  # Administrator credentials when not using an existing secret (see below)
+  adminUser: admin
+  # adminPassword: strongpassword
+  # Use an existing secret for the admin user.
+  admin:
+    existingSecret: "grafana"
+    userKey: admin-user
+    passwordKey: admin-password
+
+  plugins:
+    - snuids-radar-panel
+    - grafana-piechart-panel
+    - vonage-status-panel
+    - briangann-gauge-panel
+
+  grafana.ini:
+    server:
+      # The full public facing url you use in browser, used for redirects and emails
+      root_url: https://grafana.example.com
+    auth.generic_oauth:
+      enabled: true
+      allow_sign_up: true
+      scopes: "openid profile email"
+      auth_url: https://auth.example.com/auth/realms/example/protocol/openid-connect/auth
+      token_url: https://auth.example.com/auth/realms/example/protocol/openid-connect/token
+      api_url: https://auth.example.com/auth/realms/example/protocol/openid-connect/userinfo
+      client_id: grafana
+      client_secret: xxxx-xxxx-xxxx-xxxx
+    auth:
+      oauth_auto_login: false

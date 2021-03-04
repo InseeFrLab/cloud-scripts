@@ -1,0 +1,6 @@
+prometheus:
+  server:
+    persistentVolume:
+      size: 32Gi
+  podSecurityPolicy:
+    enabled: true
