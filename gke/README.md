@@ -2,10 +2,16 @@
 
 ## Setup terraform
 
-Latest Terraform version should be ok. Tested with 0.13.5.  
+Latest Linux Terraform version should be ok. Tested with 0.13.5.  
 ```
 https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip
 ```
+
+Unzip and move to a bin directory: https://learn.hashicorp.com/tutorials/terraform/install-cli
+
+## Git clone
+
+Clone the repo and move to the gke directory
 
 ## Used providers
 
@@ -21,11 +27,11 @@ terraform init -upgrade
 
 ### Configuration  
 
-* Create a service account (https://console.cloud.google.com/iam-admin/serviceaccounts).  
+* Create a service account (https://console.cloud.google.com/iam-admin/serviceaccounts).  ('compte de service' in the left panel in French)
 * TODO : list permissions needed for the service account. Creating a `Project owner` service account is insecure but effective.
+* Create account key
 * Export account key in JSON format  
-* Put JSON key on `~/gcp/account.json`
-* Modify the `config.tf` file to change the project name
+* Put JSON key on `~/.gcp/account.json`
 
 ### Run  
 
