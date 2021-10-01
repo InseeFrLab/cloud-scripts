@@ -2,5 +2,5 @@ ingress:
   enabled: true
   annotations:
     kubernetes.io/ingress.class: nginx
-    hosts:
-      - host: onyxia.demo.insee.io
+  hosts:
+    - host: onyxia.demo.insee.io

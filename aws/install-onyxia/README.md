@@ -26,7 +26,7 @@ helm install onyxia inseefrlab/onyxia -f values/1-basic.yaml
 ```
 
 Congratulations, you now have a basic `Onyxia` datalab running on your brand new cluster :)  
-Browse to `http://YOUREXTERNALIP.elb.eu-west-1.amazonaws.com` and deploy your first on-demand service !
+Browse to `https://YOUREXTERNALIP.elb.eu-west-1.amazonaws.com` and deploy your first on-demand service !
 
 This installation is very basic and has a lot of limitations.
 We will now configure it to remove thoses limitations.
@@ -48,7 +48,11 @@ We can now update `Onyxia` to use this domain name :
 helm upgrade onyxia inseefrlab/onyxia -f values/2-domainname.yaml
 ```  
 
-Onyxia is now available at `http://onyxia.demo.insee.io`  
+Onyxia is now available at `https://onyxia.demo.insee.io`  
+
+## Optional : add a SSL certificate to nginx  
+
+TODO
 
 ## Set up authentication (openidconnect)  
 
@@ -77,5 +81,14 @@ Also create at least one user with a password set.
 helm upgrade onyxia inseefrlab/onyxia -f values/3-oidc.yaml
 ```  
 
-TODO : API configuration  
+## Activate multi namespace mode and regions configuration  
+
+Now that users are authenticated, we can switch to multi namespaces (so that each user deploy services into it's own namespace).  
+Note that this requires `cluster-admin` role.  
+We also set the domain name used by created services as `"expose": { "domain": "demo.insee.io" }` so that each created service will be accessible at `random-generated-value.demo.insee.io`.
+
+[4-regions.yaml](values/4-regions.yaml)
+```
+helm upgrade onyxia inseefrlab/onyxia -f values/4-regions.yaml
+```  
 
