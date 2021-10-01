@@ -50,9 +50,21 @@ helm upgrade onyxia inseefrlab/onyxia -f values/2-domainname.yaml
 
 Onyxia is now available at `https://onyxia.demo.insee.io`  
 
-## Optional : add a SSL certificate to nginx  
+## Setup TLS (HTTPS) (optional)
 
-TODO
+Generate a wildcard certificate (Certbot documentation : https://certbot.eff.org/) :  
+
+```
+certbot certonly --manual
+```  
+
+Import it as a Kubernetes secret :  
+
+```
+kubectl create secret tls wildcard -n ingress-nginx --key privkey.pem --cert fullchain.pem
+```  
+
+Then patch the `ingress-nginx` deployment by adding `--default-ssl-certificate=ingress-nginx/wildcard` to the controller args.
 
 ## Set up authentication (openidconnect)  
 
@@ -84,7 +96,7 @@ helm upgrade onyxia inseefrlab/onyxia -f values/3-oidc.yaml
 ## Activate multi namespace mode and regions configuration  
 
 Now that users are authenticated, we can switch to multi namespaces (so that each user deploy services into it's own namespace).  
-Note that this requires `cluster-admin` role.  
+Note that this requires `cluster-admin` role (`serviceAccount.clusterAdmin=true` in helm values).  
 We also set the domain name used by created services as `"expose": { "domain": "demo.insee.io" }` so that each created service will be accessible at `random-generated-value.demo.insee.io`.
 
 [4-regions.yaml](values/4-regions.yaml)
