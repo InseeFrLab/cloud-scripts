@@ -54,4 +54,4 @@ To do so you can use `kubectl edit` or copy the manifest used at installation, m
 
 ## Profit  
 
-You are now ready to deploy [https://github.com/onyxia](https://github.com/onyxia) !
+You are now ready to deploy [https://github.com/inseefrlab/onyxia](https://github.com/inseefrlab/onyxia) !
