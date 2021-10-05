@@ -1,6 +1,6 @@
 # Creating a basic EKS (AWS managed kubernetes) cluster  
 
-In this document we intend to deploy and configure a basic EKS cluster with ingress (reverse proxy) support. The primary goal is to have a cluster up and ready for Onyxia [https://github.com/onyxia](https://github.com/onyxia).  
+In this document we intend to deploy and configure a basic EKS cluster with ingress (reverse proxy) support. The primary goal is to have a cluster up and ready for Onyxia [https://github.com/inseefrlab/onyxia](https://github.com/inseefrlab/onyxia).  
 
 ## Setup cluster  
 
