@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: mario
@@ -13,6 +13,9 @@ spec:
       http:
         paths:
           - path: /
+            pathPrefix: Prefix
             backend:
-              serviceName: mario
-              servicePort: http
+              service:
+                name: mario
+                port:
+                  number: 80 
